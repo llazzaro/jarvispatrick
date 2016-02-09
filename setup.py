@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='jarvispatrick',
-    version='0.1.0',
+    version='0.1.1',
     description="Jarvis-Patrick Clustering that uses a nearest neighbor approach to clustering objects",
     long_description=readme + '\n\n' + history,
     author="Leonardo Lazzaro",
