@@ -13,6 +13,7 @@ to a wide class of practical problems involving large sample size and high
 dimensionality. No attempt is made to show how a priori problem
 knowledge can be introduced into the procedure.
 """
+from collections import defaultdict
 
 
 class JarvisPatrick(object):
@@ -38,8 +39,11 @@ class JarvisPatrick(object):
                     if element in other_neighbors and other_element in neighbors:
                         if len(set(neighbors).intersection(other_neighbors)) >= number_of_common_neighbors:
                             self.reconfigure_clusters(element, other_element)
+        result = defaultdict(list)
+        for element, cluster_nro in self.cluster.items():
+            result[cluster_nro].append(element)
 
-        return self.cluster
+        return result
 
     def reconfigure_clusters(self, element, other_element):
         if self.cluster[element] != self.cluster[other_element]:

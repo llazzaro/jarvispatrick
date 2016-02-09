@@ -42,7 +42,7 @@ class TestJarvisPatrick(unittest.TestCase):
         elements = [1, 2, 3, 4, 5, 6, 7, 8]
         clustering = JarvisPatrick(elements, hardcoded_length)
         cluster = clustering(3, 2)
-        self.assertEquals(cluster, {1: 0, 2: 0, 3: 0, 4: 3, 5: 3, 6: 3, 7: 6, 8: 7})
+        self.assertEquals(cluster, {0: [1, 2, 3], 3: [4, 5, 6], 6: [7], 7: [8]})
 
 
 if __name__ == '__main__':
