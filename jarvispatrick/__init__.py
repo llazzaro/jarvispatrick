@@ -27,7 +27,7 @@ class JarvisPatrick(object):
     def __call__(self, number_of_neighbors, number_of_common_neighbors):
         """
         """
-        if number_of_common_neighbors >= number_of_neighbors:
+        if number_of_common_neighbors > number_of_neighbors:
             raise ValueError('Asked for more common neighbors than number of neighbors')
         neighbors_list = {}
         for element in self.dataset_elements:
