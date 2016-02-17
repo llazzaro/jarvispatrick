@@ -22,12 +22,12 @@ class JarvisPatrick(object):
         self.dataset_elements = dataset_elements
         self.distance_function = distance_function
         # initially each element is a cluster of 1 element
-        self.cluster = {element: cluster_index for cluster_index, element in enumerate(self.dataset_elements)}
 
-    def __call__(self, number_of_neighbors, number_of_common_neighbors):
+    def __call__(self, number_of_neighbors, threshold_number_of_common_neighbors):
         """
         """
-        if number_of_common_neighbors > number_of_neighbors:
+        self.cluster = {element: cluster_index for cluster_index, element in enumerate(self.dataset_elements)}
+        if threshold_number_of_common_neighbors > number_of_neighbors:
             raise ValueError('Asked for more common neighbors than number of neighbors')
         neighbors_list = {}
         for element in self.dataset_elements:
@@ -37,7 +37,8 @@ class JarvisPatrick(object):
                 if element != other_element:
                     # we check both sides since the relation is not symmetric
                     if element in other_neighbors and other_element in neighbors:
-                        if len(set(neighbors).intersection(other_neighbors)) >= number_of_common_neighbors:
+                        number_of_common_neighbors = len(set(neighbors).intersection(other_neighbors))
+                        if number_of_common_neighbors >= threshold_number_of_common_neighbors:
                             self.reconfigure_clusters(element, other_element)
         result = defaultdict(list)
         for element, cluster_nro in self.cluster.items():
